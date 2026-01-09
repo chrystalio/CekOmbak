@@ -83,15 +83,15 @@ It's OK to directly create/modify configuration files (tailwind.config.js, packa
 - **issued**: Publication or release time of the forecast by the station in UTC (format: YYYY-MM-DD hh:mm).
 - **valid-from**: Start time of the forecast validity period in UTC (format: YYYY-MM-DD hh:mm).
 - **valid-to**: End time of the forecast validity period in UTC (format: YYYY-MM-DD hh:mm).
-- **time-desc**: Time description (Today, Tomorrow, Day+2, Day+3).
-- **Weather**: (Clear, Mostly Clear, Cloudy, Overcast, Smoke, Fog, Light Rain, Moderate Rain, Heavy Rain, Localized Rain, Thunderstorms).
+- **time-desc**: Time description (Hari ini, Besok, H+2, H+3 (Today, Tomorrow, Day+2, Day+3)).
+- **Weather**: (Cerah, Cerah Berawan, Berawan, Berawan Tebal, Asap, Kabut, Hujan Ringan, Hujan Sedang, Hujan Lebat, Hujan Lokal, Hujan Badai, (Clear, Mostly Clear, Cloudy, Overcast, Smoke, Fog, Light Rain, Moderate Rain, Heavy Rain, Localized Rain, Thunderstorms)).
 - **weather-desc**: General weather description / Synoptic conditions.
 - **warning_desc**: Early warning for severe weather.
 - **station_remark**: Additional remarks from the station.
-- **wave_cat**: Wave category: (Calm, Low, Moderate, High, Very High, Extreme, Phenomenal/Very Extreme).
+- **wave_cat**: Wave category: (Tenang, Rendah, Sedang, Tinggi, Sangat Tinggi, Ekstrem, Sangat Ekstrem (Calm, Low, Moderate, High, Very High, Extreme, Phenomenal/Very Extreme)).
 - **wave_desc**: Average wave height range in meters.
 - **wind_from**: Wind direction (From): North, North-Northeast, Northeast, East-Northeast, East, East-Southeast, Southeast, South-Southeast, South, South-Southwest, Southwest, West-Southwest, West, West-Northwest, Northwest, North-Northwest.
-- **wind_to**: Wind direction (To): North, North-Northeast, Northeast, East-Northeast, East, East-Southeast, Southeast, South-Southeast, South, South-Southwest, Southwest, West-Southwest, West, West-Northwest, Northwest, North-Northwest.
+- **wind_to**: Wind direction (To): Utara ,Utara Timur Laut, Timur Laut, Timur Timur Laut, Timur, Timur Tenggara, Tenggara, Selatan Tenggara, Selatan, Selatan Barat Daya, Barat Daya, Barat Barat daya, Barat, Barat Barat Laut, Barat Laut, Utara Barat Laut. (North, North-Northeast, Northeast, East-Northeast, East, East-Southeast, Southeast, South-Southeast, South, South-Southwest, Southwest, West-Southwest, West, West-Northwest, Northwest, North-Northwest.)
 - **wind_speed_min**: Minimum wind speed in knots.
 - **wind_speed_max**: Maximum wind speed in knots.
 
