@@ -22,24 +22,62 @@ CekOmbak is a real-time maritime weather safety dashboard for Indonesian fisherm
 - **Performance Target**: User can see wave height within 3 seconds
 - **Mobile-First**: Designed for use at ports and on boats
 
+## Development Workflow ⚠️ IMPORTANT
+
+**This is a learning project.** The developer is learning React, TypeScript, and modern web development.
+
+### Claude's Role: Guide, Don't Code
+
+**DO:**
+- ✅ Explain concepts clearly before implementation
+- ✅ Provide step-by-step directions and hints
+- ✅ Show examples and patterns to follow
+- ✅ Review code written by the developer
+- ✅ Explain WHY something works, not just HOW
+- ✅ Ask questions to check understanding
+- ✅ Suggest what to build next
+
+**DON'T:**
+- ❌ Write complete files/functions without being asked
+- ❌ Auto-implement features without guidance first
+- ❌ Skip explanations and jump straight to code
+- ❌ Do all the work while the developer just watches
+
+### Workflow Pattern
+
+1. **Explain** the concept or feature
+2. **Show** an example or pattern
+3. **Guide** the developer to write the code themselves
+4. **Review** and provide feedback
+5. **Iterate** if needed
+
+### Exception: Configuration Files
+
+It's OK to directly create/modify configuration files (tailwind.config.js, package.json, etc.) since these are boilerplate and not learning-focused.
+
 ## Architecture
 
 ### Data Flow
 1. **Primary Source**: BMKG Maritime Public API (https://peta-maritim.bmkg.go.id/public_api/perairan)
-2. **Transformation Layer**: Vercel Serverless Function (`/api/*`) fetches raw data, filters unnecessary fields, returns clean JSON
-3. **Client-side Persistence**: localStorage for "Favorite Area" to enable instant loading
+2. **Direct API Calls**: React app fetches data directly from BMKG API (no serverless proxy)
+3. **Caching Layer**: TanStack Query handles caching, refetching, and request deduplication
+4. **Client-side Persistence**: localStorage for "Favorite Area" to enable instant loading
 
-### Folder Structure (Planned)
+**Note:** Using direct API calls for simplicity. BMKG API is public and allows CORS. A Vercel Serverless Function can be added later if needed for data filtering, caching, or if CORS becomes an issue.
+
+### Folder Structure (Current)
 ```
 /
 ├── src/
 │   ├── components/      # UI components (cards, gauges, indicators)
 │   ├── hooks/           # Custom React hooks (useMaritimeData, etc.)
-│   ├── api/             # API client utilities
+│   ├── api/             # API client utilities (direct BMKG API calls)
+│   ├── types/           # TypeScript type definitions
 │   └── locales/         # i18n JSON resource files (id.json, en.json)
-├── api/                 # Vercel Serverless Functions
 └── public/              # Static assets
 ```
+
+**Optional for future:** `/api/` folder for Vercel Serverless Functions (if needed)
 
 ### Parameters Explanation
 - **issued**: Publication or release time of the forecast by the station in UTC (format: YYYY-MM-DD hh:mm).
@@ -89,27 +127,32 @@ CekOmbak is a real-time maritime weather safety dashboard for Indonesian fisherm
 
 ## Development Phases
 
-### Phase 1: Foundation
-- Initialize Vite + Tailwind project
-- Set up folder structure
-- Integrate i18next with ID/EN locales
-- Create skeleton UI with placeholders
+### Phase 1: Foundation ✅ COMPLETED
+- ✅ Initialize Vite + Tailwind project (Vite 7 + React 19 + TypeScript + SWC)
+- ✅ Set up folder structure (components, hooks, api, locales)
+- ✅ Integrate i18next with ID/EN locales (translation files created)
+- ✅ Configure Tailwind CSS 4 with PostCSS
+- ✅ Install TanStack Query for API state management
+- ✅ Basic test UI to verify Tailwind is working
 
-### Phase 2: Data Integration
-- Implement Vercel Serverless Function for BMKG data fetching
-- Use TanStack Query for API lifecycle (Loading → Success → Error)
-- Map API responses to UI cards
+**Completed on:** 2026-01-09
+
+### Phase 2: Data Integration 🚧 IN PROGRESS
+- [ ] Create TypeScript types for BMKG API response
+- [ ] Create API client utility for direct BMKG API calls
+- [ ] Create custom hook with TanStack Query for API lifecycle (Loading → Success → Error)
+- [ ] Update UI to display real maritime data from BMKG API
 
 ### Phase 3: UI/UX Polish
-- Add "Safety Gauge" visual indicator for wave height
-- Implement mobile-responsive layouts
-- Add "Last Updated" timestamps
-- Color-coded safety status indicators
+- [ ] Add "Safety Gauge" visual indicator for wave height
+- [ ] Implement mobile-responsive layouts
+- [ ] Add "Last Updated" timestamps
+- [ ] Color-coded safety status indicators
 
 ### Phase 4: Launch & Optimization
-- Deploy to Vercel production
-- Run Lighthouse performance audit
-- Handle edge cases (BMKG API downtime, network errors)
+- [ ] Deploy to Vercel production
+- [ ] Run Lighthouse performance audit
+- [ ] Handle edge cases (BMKG API downtime, network errors)
 
 ## Key Features
 
