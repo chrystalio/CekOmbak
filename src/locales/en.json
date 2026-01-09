@@ -1,0 +1,36 @@
+{
+  "app": {
+    "title": "CekOmbak",
+    "subtitle": "BMKG Maritime Weather Forecast"
+  },
+  "area": {
+    "select": "Select Maritime Area",
+    "placeholder": "Search area...",
+    "favorite": "Favorite Area"
+  },
+  "weather": {
+    "wave_height": "Wave Height",
+    "wind_speed": "Wind Speed",
+    "wind_direction": "Wind Direction",
+    "weather_status": "Weather",
+    "last_updated": "Last updated"
+  },
+  "safety": {
+    "safe": "Safe",
+    "moderate": "Moderate",
+    "warning": "Warning",
+    "danger": "Danger"
+  },
+  "wave_category": {
+    "Tenang": "Calm",
+    "Rendah": "Low",
+    "Sedang": "Moderate",
+    "Tinggi": "High",
+    "Sangat Tinggi": "Very High",
+    "Ekstrim": "Extreme",
+    "Fenomenal": "Phenomenal"
+  },
+  "loading": "Loading data...",
+  "error": "Failed to load data. Please try again.",
+  "retry": "Retry"
+}

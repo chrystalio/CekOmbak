@@ -1,0 +1,36 @@
+{
+  "app": {
+    "title": "CekOmbak",
+    "subtitle": "Prakiraan Cuaca Maritim BMKG"
+  },
+  "area": {
+    "select": "Pilih Wilayah Perairan",
+    "placeholder": "Cari wilayah...",
+    "favorite": "Area Favorit"
+  },
+  "weather": {
+    "wave_height": "Tinggi Gelombang",
+    "wind_speed": "Kecepatan Angin",
+    "wind_direction": "Arah Angin",
+    "weather_status": "Cuaca",
+    "last_updated": "Terakhir diperbarui"
+  },
+  "safety": {
+    "safe": "Aman",
+    "moderate": "Sedang",
+    "warning": "Waspada",
+    "danger": "Bahaya"
+  },
+  "wave_category": {
+    "Tenang": "Tenang",
+    "Rendah": "Rendah",
+    "Sedang": "Sedang",
+    "Tinggi": "Tinggi",
+    "Sangat Tinggi": "Sangat Tinggi",
+    "Ekstrim": "Ekstrim",
+    "Fenomenal": "Fenomenal"
+  },
+  "loading": "Memuat data...",
+  "error": "Gagal memuat data. Silakan coba lagi.",
+  "retry": "Coba Lagi"
+}
