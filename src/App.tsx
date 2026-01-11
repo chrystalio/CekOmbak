@@ -143,38 +143,35 @@ function App() {
         <div className="mb-8 slide-in-2">
           <div className="data-panel p-2">
             <div className="grid grid-cols-4 gap-1">
-              {data.data.map((forecast, index) => {
-                const forecastStatus = getSafetyStatus(forecast.wave_cat);
-                return (
-                  <button
-                    key={index}
-                    onClick={() => setSelectedDayIndex(index)}
-                    className={`
-                      relative px-4 py-3 font-mono text-xs font-bold uppercase tracking-wider
-                      transition-all duration-300 border border-slate-700
-                      ${
-                        selectedDayIndex === index
-                          ? 'bg-cyan-500/20 text-cyan-100 border-cyan-500/50'
-                          : 'bg-slate-900/30 text-slate-500 hover:text-slate-300 hover:bg-slate-800/50'
-                      }
-                    `}
-                  >
-                    {/* Active Indicator Bar */}
-                    {selectedDayIndex === index && (
-                      <div className="absolute top-0 left-0 w-full h-0.5 bg-cyan-400" />
-                    )}
+              {data.data.map((forecast, index) => (
+                <button
+                  key={index}
+                  onClick={() => setSelectedDayIndex(index)}
+                  className={`
+                    relative px-4 py-3 font-mono text-xs font-bold uppercase tracking-wider
+                    transition-all duration-300 border border-slate-700
+                    ${
+                      selectedDayIndex === index
+                        ? 'bg-cyan-500/20 text-cyan-100 border-cyan-500/50'
+                        : 'bg-slate-900/30 text-slate-500 hover:text-slate-300 hover:bg-slate-800/50'
+                    }
+                  `}
+                >
+                  {/* Active Indicator Bar */}
+                  {selectedDayIndex === index && (
+                    <div className="absolute top-0 left-0 w-full h-0.5 bg-cyan-400" />
+                  )}
 
-                    <div className="text-center">
-                      <div className="text-[10px] opacity-70 mb-1">
-                        {forecast.time_desc}
-                      </div>
-                      <div className={`${forecastStatus.textColor} text-xs font-bold`}>
-                        {forecast.wave_cat}
-                      </div>
+                  <div className="text-center">
+                    <div className="text-[10px] opacity-70 mb-1">
+                      {forecast.time_desc}
                     </div>
-                  </button>
-                );
-              })}
+                    <div className={`status-${status.textColor} text-xs`}>
+                      {forecast.wave_cat}
+                    </div>
+                  </div>
+                </button>
+              ))}
             </div>
           </div>
         </div>
@@ -193,7 +190,7 @@ function App() {
 
             {/* Data Display */}
             <div className="flex items-baseline gap-3 mb-4">
-              <span className="font-mono text-5xl md:text-7xl font-bold text-slate-100 tracking-tight">
+              <span className="font-mono text-4xl md:text-5xl font-bold text-slate-100 tracking-tight">
                 {currentForecast.wave_desc}
               </span>
             </div>
