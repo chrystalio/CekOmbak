@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useMaritimeData } from './hooks/useMaritimeData';
 import { parseBMKGDate, formatToIndonesian } from './utils/dateUtils';
 
@@ -56,6 +57,8 @@ const windToDegrees = (direction: string): number => {
 };
 
 function App() {
+  const [selectedDayIndex, setSelectedDayIndex] = useState(0);
+
   const { data, isLoading, isError, error } = useMaritimeData(
     'D.03',
     'Perairan utara Kep. Anambas'
@@ -98,7 +101,7 @@ function App() {
   // TypeScript: data is guaranteed to be defined here after loading/error checks
   if (!data) return null;
 
-  const currentForecast = data.data[0];
+  const currentForecast = data.data[selectedDayIndex];
   const status = getSafetyStatus(currentForecast.wave_cat);
   const windDeg = windToDegrees(currentForecast.wind_from);
 
@@ -136,8 +139,45 @@ function App() {
           </div>
         </header>
 
+        {/* Day Selector - Industrial Segmented Control */}
+        <div className="mb-8 slide-in-2">
+          <div className="data-panel p-2">
+            <div className="grid grid-cols-4 gap-1">
+              {data.data.map((forecast, index) => (
+                <button
+                  key={index}
+                  onClick={() => setSelectedDayIndex(index)}
+                  className={`
+                    relative px-4 py-3 font-mono text-xs font-bold uppercase tracking-wider
+                    transition-all duration-300 border border-slate-700
+                    ${
+                      selectedDayIndex === index
+                        ? 'bg-cyan-500/20 text-cyan-100 border-cyan-500/50'
+                        : 'bg-slate-900/30 text-slate-500 hover:text-slate-300 hover:bg-slate-800/50'
+                    }
+                  `}
+                >
+                  {/* Active Indicator Bar */}
+                  {selectedDayIndex === index && (
+                    <div className="absolute top-0 left-0 w-full h-0.5 bg-cyan-400" />
+                  )}
+
+                  <div className="text-center">
+                    <div className="text-[10px] opacity-70 mb-1">
+                      {forecast.time_desc}
+                    </div>
+                    <div className="text-xs">
+                      {forecast.wave_cat}
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
         {/* Main Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+        <div key={selectedDayIndex} className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 animate-fade-in">
 
           {/* Wave Height Card - Featured */}
           <section className="data-panel p-6 md:p-8 md:col-span-2 slide-in-2">
