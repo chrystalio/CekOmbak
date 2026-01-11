@@ -1,1 +1,140 @@
 @import "tailwindcss";
+
+/* Google Fonts Import - IBM Plex Sans (clean, professional) + JetBrains Mono (technical data) */
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+/* Tailwind v4 Theme Configuration */
+@theme {
+  /* Custom Colors - generates bg-*, text-*, border-* utilities */
+  --color-ocean-deep: #071A24;
+  --color-ocean-surface: #0A2332;
+  --color-ocean-light: #0D2D40;
+  --color-safe: #10B981;
+  --color-caution: #F59E0B;
+  --color-danger: #EF4444;
+
+  --font-family-sans: "IBM Plex Sans", system-ui, sans-serif;
+  --font-family-mono: "JetBrains Mono", monospace;
+  --backdrop-blur-xs: 2px;
+}
+
+:root {
+  --ocean-surface-alpha: rgba(255, 255, 255, 0.03);
+  --ocean-glow: rgba(16, 185, 129, 0.15);
+
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+}
+
+.ocean-grid {
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.03) 0px, transparent 1px, transparent 50px),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0px, transparent 1px, transparent 50px);
+}
+
+.data-panel {
+  background: rgba(10, 35, 50, 0.6);
+  border-left: 3px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.data-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  border-left: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.status-safe {
+  background: #10B981;
+  color: #000;
+}
+
+.status-caution {
+  background: #F59E0B;
+  color: #000;
+}
+
+.status-danger {
+  background: #EF4444;
+  color: #fff;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-1 {
+  animation: slide-in 0.4s ease-out 0.1s both;
+}
+
+.slide-in-2 {
+  animation: slide-in 0.4s ease-out 0.2s both;
+}
+
+.slide-in-3 {
+  animation: slide-in 0.4s ease-out 0.3s both;
+}
+
+.slide-in-4 {
+  animation: slide-in 0.4s ease-out 0.4s both;
+}
+
+.warning-panel {
+  background: rgba(239, 68, 68, 0.15);
+  border-left: 4px solid #EF4444;
+  border-top: 1px solid rgba(239, 68, 68, 0.3);
+  position: relative;
+}
+
+.warning-panel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 20px 20px 0;
+  border-color: transparent #EF4444 transparent transparent;
+  opacity: 0.3;
+}
+
+.data-bar {
+  background: rgba(255, 255, 255, 0.1);
+  height: 3px;
+  position: relative;
+  overflow: visible;
+}
+
+.data-bar-fill {
+  background: #10B981;
+  height: 100%;
+  position: relative;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+}
+
+.data-bar-fill::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -2px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 3.5px 0 3.5px 8px;
+  border-color: transparent transparent transparent #10B981;
+}
