@@ -1,4 +1,5 @@
 import { useMaritimeData } from './hooks/useMaritimeData';
+import { parseBMKGDate, formatToIndonesian } from './utils/dateUtils';
 
 // Safety status mapper based on wave category
 const getSafetyStatus = (waveCat: string) => {
@@ -130,13 +131,7 @@ function App() {
           <div className="flex items-center gap-2 text-slate-500 text-xs font-mono mt-3 border-t border-slate-800 pt-2">
             <span className="text-slate-600">▸</span>
             <span>
-              {new Date(data.issued).toLocaleString('id-ID', {
-                day: '2-digit',
-                month: 'short',
-                year: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit'
-              })} WIB
+              {formatToIndonesian(parseBMKGDate(data.issued))} WIB
             </span>
           </div>
         </header>
@@ -275,34 +270,109 @@ function App() {
           </section>
         </div>
 
-        {/* Footer */}
-        <footer className="mt-16 border-t border-slate-200 pt-8 pb-12">
-            <div className="flex flex-col items-center space-y-4">
-                {/* Primary Footer Info */}
-                <div className="flex flex-wrap justify-center gap-x-3 gap-y-2 text-xs font-medium text-slate-500">
-                <a
-                    href="https://peta-maritim.bmkg.go.id"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="transition-colors hover:text-blue-600"
-                >
-                    Sumber: BMKG Peta Maritim
-                </a>
-                </div>
+        {/* Footer - Maritime Control Panel Style */}
+        <footer className="mt-20 relative">
+          {/* Top Technical Separator */}
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-700 to-transparent" />
+          <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-slate-700" />
+          <div className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-slate-700" />
 
-                {/* Attribution */}
-                <p className="text-sm uppercase tracking-[0.2em] text-slate-400">
-                Made with ☕ By
-                <a
-                    href="https://github.com/chrystalio"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="ml-1 font-bold text-slate-600 transition-colors hover:text-blue-500"
-                >
-                    Kristoff
-                </a>
-                </p>
+          <div className="pt-12 pb-16">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+
+              {/* Data Source Panel */}
+              <div className="data-panel p-5 group hover:border-l-safe transition-all duration-300">
+                <div className="flex items-start gap-3">
+                  <div className="mt-1">
+                    <div className="w-2 h-2 bg-safe animate-pulse" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-slate-500 text-[10px] uppercase tracking-[0.15em] font-bold mb-2 font-mono">
+                      Data Source
+                    </div>
+                    <a
+                      href="https://peta-maritim.bmkg.go.id"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-300 text-sm font-mono hover:text-safe transition-colors duration-200 flex items-center gap-2"
+                    >
+                      <span>BMKG Peta Maritim</span>
+                      <span className="text-slate-600 group-hover:text-safe transition-colors">↗</span>
+                    </a>
+                    <div className="text-slate-600 text-xs font-mono mt-1">
+                      Official Maritime Forecast
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* System Info Panel */}
+              <div className="data-panel p-5">
+                <div className="flex items-start gap-3">
+                  <div className="mt-1">
+                    <div className="w-2 h-2 bg-cyan-500" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-slate-500 text-[10px] uppercase tracking-[0.15em] font-bold mb-2 font-mono">
+                      System Status
+                    </div>
+                    <div className="text-slate-300 text-sm font-mono">
+                      v1.0.0 • ONLINE
+                    </div>
+                    <div className="text-slate-600 text-xs font-mono mt-1">
+                      Real-time Maritime Monitor
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Developer Panel */}
+              <div className="data-panel p-5 group hover:border-l-cyan-500 transition-all duration-300">
+                <div className="flex items-start gap-3">
+                  <div className="mt-1">
+                    <div className="w-2 h-2 bg-slate-600 group-hover:bg-cyan-500 transition-colors" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="text-slate-500 text-[10px] uppercase tracking-[0.15em] font-bold mb-2 font-mono">
+                      Developed By
+                    </div>
+                    <a
+                      href="https://github.com/chrystalio"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-300 text-sm font-mono hover:text-cyan-500 transition-colors duration-200 flex items-center gap-2"
+                    >
+                      <span>Kristoff</span>
+                      <span className="text-slate-600 group-hover:text-cyan-500 transition-colors">↗</span>
+                    </a>
+                    <div className="text-slate-600 text-xs font-mono mt-1">
+                      Made with ☕ & curiosity
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+
+            {/* Bottom Technical Bar */}
+            <div className="flex items-center justify-between pt-6 border-t border-slate-800/50">
+              <div className="flex items-center gap-3">
+                <div className="hidden md:flex items-center gap-1.5 font-mono text-[10px] text-slate-600">
+                  <span className="text-slate-700">▸</span>
+                  <span>CEKCOMBAK.MARITIME</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 font-mono text-[10px] text-slate-600">
+                <span className="hidden sm:inline">COORDINATES</span>
+                <span className="text-slate-500">1°N 104°E</span>
+                <div className="w-1.5 h-1.5 bg-slate-700 ml-2" />
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Corner Accents */}
+          <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-slate-800" />
+          <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-slate-800" />
         </footer>
       </div>
     </div>
