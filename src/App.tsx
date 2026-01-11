@@ -206,25 +206,34 @@ function App() {
               </h2>
             </div>
 
-            <div className="flex items-baseline gap-2 mb-4">
-              <span className="font-mono text-5xl font-bold text-slate-100 tracking-tight">
-                {currentForecast.wind_speed_max}
-              </span>
-              <span className="text-slate-400 text-lg font-bold uppercase">kt</span>
-            </div>
-
-            <div className="space-y-3">
-              <div className="data-bar">
-                <div
-                  className="data-bar-fill transition-all duration-1000"
-                  style={{ width: `${Math.min((currentForecast.wind_speed_max / 50) * 100, 100)}%` }}
-                />
+            {/* Split Display: Min/Max Readout */}
+            <div className="grid grid-cols-2 gap-3 mb-4">
+              {/* MIN Speed */}
+              <div className="border border-slate-700 bg-slate-900/30 p-4 relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-full bg-cyan-500/30" />
+                <div className="text-[10px] text-slate-500 font-mono uppercase tracking-wider mb-1">
+                  Minimum
+                </div>
+                <div className="flex items-baseline gap-1">
+                  <span className="font-mono text-3xl font-bold text-slate-300 tracking-tight">
+                    {currentForecast.wind_speed_min}
+                  </span>
+                  <span className="text-slate-500 text-xs font-bold uppercase">kt</span>
+                </div>
               </div>
-              <div className="flex items-center justify-between text-xs border-t border-slate-800 pt-2">
-                <span className="text-slate-500 font-mono">MIN/MAX</span>
-                <span className="text-slate-300 font-mono font-bold">
-                  {currentForecast.wind_speed_min} - {currentForecast.wind_speed_max} kt
-                </span>
+
+              {/* MAX Speed */}
+              <div className="border border-slate-700 bg-slate-900/30 p-4 relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-full bg-cyan-400" />
+                <div className="text-[10px] text-slate-500 font-mono uppercase tracking-wider mb-1">
+                  Maximum
+                </div>
+                <div className="flex items-baseline gap-1">
+                  <span className="font-mono text-3xl font-bold text-cyan-100 tracking-tight">
+                    {currentForecast.wind_speed_max}
+                  </span>
+                  <span className="text-cyan-400 text-xs font-bold uppercase">kt</span>
+                </div>
               </div>
             </div>
           </section>
@@ -358,7 +367,9 @@ function App() {
               <div className="flex items-center gap-3">
                 <div className="hidden md:flex items-center gap-1.5 font-mono text-[10px] text-slate-600">
                   <span className="text-slate-700">▸</span>
-                  <span>CEKCOMBAK.MARITIME</span>
+                  <span>CekOmbak</span>
+                  <span className="text-slate-300">/</span>
+                  <span>{new Date().getFullYear()}</span>
                 </div>
               </div>
 
